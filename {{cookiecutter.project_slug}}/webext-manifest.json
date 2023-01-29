@@ -22,7 +22,7 @@
   "permissions": ["storage"],
   "content_scripts": [
     {
-      "matches": ["*://*"],
+      "matches": ["*://*/*"],
       "js": ["main.js"]
     }
   ]

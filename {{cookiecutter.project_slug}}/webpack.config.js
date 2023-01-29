@@ -22,7 +22,7 @@ module.exports = {
 
   entry: {
     'resources/dist/options': './src/browser/options.js',
-    'main', './src/main.js',
+    'main': './src/main.js',
     // Map additional files here
   },
 

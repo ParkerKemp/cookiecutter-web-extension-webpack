@@ -20,5 +20,9 @@
     "page": "options/options.html"
   },
   "permissions": ["storage"],
-  "content_scripts": []
+  "content_scripts": [
+    {
+      "js": ["main.js"]
+    }
+  ]
 }

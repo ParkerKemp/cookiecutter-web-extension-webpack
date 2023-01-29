@@ -21,7 +21,9 @@ module.exports = {
   node: false,
 
   entry: {
-    'resources/dist/options': './src/browser/options.js'
+    'resources/dist/options': './src/browser/options.js',
+    'main', './src/main.js',
+    // Map additional files here
   },
 
   output: {

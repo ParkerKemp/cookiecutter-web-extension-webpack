@@ -13,5 +13,5 @@ if not re.match(SLUG_PATTERN, slug):
     sys.exit(1)
 
 if not re.match(ID_PATTERN, extension_id):
-    print('ERROR: "{}" is not a valid extension ID'.format(extension_id))
+    print('ERROR: "{}" is not a valid extension ID (must be a unique identifier of your choosing [https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_specific_settings#firefox_gecko_properties])'.format(extension_id))
     sys.exit(1)

@@ -10,12 +10,12 @@ CHROME_PROFILE := ./profile.chrome
 START_URL := about:blank
 
 NPM_CMD := $(shell command -v yarn || command -v npm)
-NPM_BIN := $(shell $(NPM_CMD) bin)
+NPM_BIN := $(shell $(NPM_CMD) )
 CHROME_CMD := $(shell command -v chrome || command -v chromium)
 
-ESLINT  := $(NPM_BIN)/eslint
-WEB_EXT := $(NPM_BIN)/web-ext
-WEBPACK := $(NPM_BIN)/webpack
+ESLINT  := npx eslint
+WEBPACK := npx webpack
+WEB_EXT := npx web-ext
 
 .PHONY: default
 default: init source-lint source-build
@@ -39,7 +39,7 @@ source-watch:
 webext-run-firefox:
 	test -d $(FIREFOX_PROFILE) || mkdir $(FIREFOX_PROFILE)
 	unset WEB_EXT_API_KEY WEB_EXT_API_SECRET ;\
-	$(WEB_EXT) run -s $(ADDON) -p $(FIREFOX_PROFILE) \
+	$(WEB_EXT) run -s $(SRC) -p $(FIREFOX_PROFILE) \
 		--keep-profile-changes \
 		--browser-console \
 		--url $(START_URL)
@@ -48,7 +48,7 @@ webext-run-chrome:
 	test -d $(CHROME_PROFILE) || mkdir $(CHROME_PROFILE)
 	$(CHROME_CMD) \
 		--user-data-dir=$(CHROME_PROFILE) \
-		--load-extension=$(ADDON) \
+		--load-extension=$(SRC) \
 		$(START_URL)
 
 moz-run: source-build
@@ -56,7 +56,7 @@ moz-run: source-build
 
 moz-lint:
 	unset WEB_EXT_FIREFOX_BINARY WEB_EXT_API_KEY WEB_EXT_API_SECRET ;\
-	$(WEB_EXT) lint -s $(ADDON) --self-hosted
+	$(WEB_EXT) lint -s $(SRC) --self-hosted
 
 moz-pack: source-lint source-build moz-lint
 	unset WEB_EXT_FIREFOX_BINARY ;\
